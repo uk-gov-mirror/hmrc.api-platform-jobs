@@ -4,9 +4,9 @@ object AppDependencies {
   def apply(): Seq[ModuleID] = compileDeps ++ testDeps
 
   private lazy val bootstrapVersion = "10.7.0"
-  private lazy val hmrcMongoVersion = "2.12.0"
+  private lazy val hmrcMongoVersion = "2.13.0"
   private lazy val appDomainVersion = "1.1.0"
-  private lazy val orgDomainVersion = "1.3.0"
+  private lazy val orgDomainVersion = "1.4.0"
 
   private lazy val compileDeps = Seq(
     "uk.gov.hmrc"                 %% "bootstrap-backend-play-30"                  % bootstrapVersion,
