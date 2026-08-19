@@ -64,7 +64,7 @@ class EmailConnectorSpec extends AsyncHmrcSpec with ResponseUtils with GuiceOneA
     val environmentName  = "Sandbox"
     val timeSinceLastUse = "335 days"
 
-    val lastAccessDate             = LocalDate.now.minusDays(335)
+    val lastInteractionDate        = LocalDate.now.minusDays(335)
     val scheduledDeletionDate      = LocalDate.now.plusDays(30)
     val dateTimeFormatter          = DateTimeFormatter.ofPattern("dd MMMM yyyy")
     val expectedDeletionDateString = scheduledDeletionDate.format(dateTimeFormatter)
@@ -76,7 +76,7 @@ class EmailConnectorSpec extends AsyncHmrcSpec with ResponseUtils with GuiceOneA
         applicationName,
         Seq(Administrator(adminEmail, userFirstName, userLastName)),
         Environment.SANDBOX,
-        lastAccessDate,
+        lastInteractionDate,
         Seq.empty,
         scheduledDeletionDate
       )
@@ -87,7 +87,7 @@ class EmailConnectorSpec extends AsyncHmrcSpec with ResponseUtils with GuiceOneA
         applicationName,
         Seq(Administrator(adminEmail, userFirstName, userLastName), Administrator(adminEmail, userFirstName, userLastName)),
         Environment.SANDBOX,
-        lastAccessDate,
+        lastInteractionDate,
         Seq.empty,
         scheduledDeletionDate
       )
