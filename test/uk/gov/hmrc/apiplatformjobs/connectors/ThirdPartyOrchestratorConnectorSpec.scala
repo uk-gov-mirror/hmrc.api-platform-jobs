@@ -203,7 +203,7 @@ class ThirdPartyOrchestratorConnectorSpec
         .modify(
           _.copy(
             createdOn = createdInstant,
-            lastAccess = Some(createdInstant)
+            lastAccess = None
           )
         )
 

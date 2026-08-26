@@ -104,7 +104,7 @@ abstract class UpdateUnusedApplicationRecordsJob(
       applicationUsageDetails.administrators.intersect(verifiedAdministratorDetails.keySet).flatMap(verifiedAdministratorDetails.get)
 
     val lastInteractionDate   = applicationUsageDetails.lastAccessDate.getOrElse(applicationUsageDetails.creationDate).asLocalDate
-    val isNeverUsedApp        = applicationUsageDetails.creationDate.asLocalDate == lastInteractionDate
+    val isNeverUsedApp        = applicationUsageDetails.lastAccessDate.fold(true)(_ => false)
     val notificationPeriods   = if (isNeverUsedApp) Set(neverUsedAppNotificationPeriod, 1.day) else sendNotificationsInAdvance(environment)
     val scheduledDeletionDate = LocalDate.now(clock).plusDays(notificationPeriods.max.toDays)
     val notificationSchedule  = notificationPeriods.map(inAdvance => scheduledDeletionDate.minusDays(inAdvance.toDays.toInt))

@@ -97,7 +97,7 @@ class UpdateUnusedApplicationRecordsJobSpec extends AsyncHmrcSpec with UnusedApp
       val adminUserEmail            = "foo@bar.com".toLaxEmail
       val date31DaysAgo             = now.minusDays(31).toInstant(ZoneOffset.UTC)
       val (neverUsedApplication, _) =
-        applicationDetails(Environment.SANDBOX, date31DaysAgo, Some(date31DaysAgo), Set(adminUserEmail))
+        applicationDetails(Environment.SANDBOX, date31DaysAgo, None, Set(adminUserEmail))
 
       when(mockTpoConnector.findApplicationsThatHaveNotBeenUsedSince(eqTo(Environment.SANDBOX), *)).thenReturn(successful(List.empty))
       when(mockTpoConnector.findApplicationsThatHaveNeverBeenUsedCreatedBefore(eqTo(Environment.SANDBOX), *)).thenReturn(successful(List(neverUsedApplication)))
